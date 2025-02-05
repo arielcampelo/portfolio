@@ -5,23 +5,38 @@ burguerButton.addEventListener('click', () => {
     navbarLinks.classList.toggle('active')
 })
 
-const canvas = document.querySelector("#canvas");
-        const ctx = canvas.getContext("2d");
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
         
-        let w, h, particles;
-        let particleDistance = 40;
-        let mouse = {
+    let w, h, particles;
+    let particleDistance = 40;
+    let mouse = {
             x: undefined,
             y: undefined,
             radius:90
         }
         
-        function init() {
+    function init() {
             resizeReset();
             animationLoop();
         }
         
-        function resizeReset() {
+    function resizeReset() {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
         
@@ -33,13 +48,15 @@ const canvas = document.querySelector("#canvas");
             }
         }
         
-        function animationLoop() {
+    function animationLoop() {
             ctx.clearRect(0, 0, w, h);
             drawScene();
             requestAnimationFrame(animationLoop);
+            ctx.fillStyle = 'rgba(15, 15, 15, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
         }
         
-        function drawScene() {
+    function drawScene() {
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
@@ -47,7 +64,7 @@ const canvas = document.querySelector("#canvas");
             drawLine();
         }
         
-        function drawLine() {
+    function drawLine() {
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
                     let dx = particles[a].x - particles[b].x;
@@ -67,17 +84,17 @@ const canvas = document.querySelector("#canvas");
             }
         }
         
-        function mousemove(e) {
+    function mousemove(e) {
             mouse.x = e.x;
             mouse.y = e.y;
         }
         
-        function mouseout() {
+    function mouseout() {
             mouse.x = undefined;
             mouse.y = undefined;
         }
         
-        class Particle {
+    class Particle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
@@ -120,7 +137,8 @@ const canvas = document.querySelector("#canvas");
             }
         }
         
-        init();
-        window.addEventListener("resize", resizeReset);
-        window.addEventListener("mousemove", mousemove);
-        window.addEventListener("mouseout", mouseout);
+    init();
+    window.addEventListener("resize", resizeReset);
+    window.addEventListener("mousemove", mousemove);
+    window.addEventListener("mouseout", mouseout);
+});
