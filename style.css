@@ -217,3 +217,48 @@ body {
     }
   }
 
+  .construction-banner {
+    position: fixed;
+    top: 50px;
+    right: -70px;
+    background: #ffd700;
+    color: #000;
+    padding: 10px 80px;
+    transform: rotate(45deg);
+    z-index: 10000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    border: 2px solid #000;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+  }
+  
+  .construction-content {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  @keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+  
+  .construction-banner:hover {
+    animation: none;
+    background: #ffc107;
+  }
+  
+  /* Para dispositivos móveis */
+  @media (max-width: 768px) {
+    .construction-banner {
+      top: 30px;
+      right: -80px;
+      font-size: 12px;
+      padding: 8px 70px;
+    }
+    
+    .construction-content {
+      gap: 5px;
+    }
+  }
