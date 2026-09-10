@@ -4,42 +4,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <title>Portfolio | Ariel Campelo</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Ariel Campelo | Portfolio - AI Engineer & Mathematician</title>
+  <meta name="description" content="Portfolio of Ariel Campelo - Mathematician (USP) & AI Systems Engineer. Specializing in Python, Symbolic AI, UN/CEFACT NLP APIs, PWAs, and Bio-statistical modeling.">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
-
 </head>
 
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="name-title">Ariel Campelo</div>
-    <a href="#" class="burguer-button">
+    <div class="nav-brand">
+      <span class="brand-name">Ariel Campelo</span>
+      <span class="brand-badge">USP Math & AI</span>
+    </div>
+
+    <button class="burguer-button" aria-label="Toggle navigation menu">
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
-    </a>
+    </button>
 
     <div class="navbar-links">
       <ul>
         <li><a href="#home">Home</a></li>
+        <li><a href="#highlights">Highlights</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-
     </div>
   </nav>
 
+  <!-- Interactive Canvas Background -->
   <canvas id="canvas"></canvas>
-  <!-- Sections Container -->
+
+  <!-- Main Content Wrapper -->
   <div class="content-wrapper">
     <!-- Hero Section -->
     <section id="home" class="section hero-section">
       <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pulse-dot"></span> Available for AI Engineering & Software Bids
+        </div>
         <h1 class="hero-title">Ariel Campelo</h1>
-        <p class="hero-subtitle">AI Engineer & Mathematician</p>
-        <p class="hero-tagline">Bridging Formal Logic with Computational Intelligence</p>
+        <h2 class="hero-subtitle">Mathematician & AI Systems Engineer</h2>
+        <p class="hero-tagline">
+          Bridging formal mathematical logic with high-performance computational intelligence, UN/CEFACT NLP microservices, and offline-first PWAs.
+        </p>
+
+        <div class="hero-actions">
+          <a href="assets/CV_ArielCampelo.pdf" target="_blank" class="btn btn-primary" download>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            CV (Português)
+          </a>
+          <a href="assets/CV_ArielCampelo_EN.pdf" target="_blank" class="btn btn-secondary" download>
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            CV (English)
+          </a>
+          <a href="#projects" class="btn btn-outline">
+            View Projects ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section id="highlights" class="section highlights-section">
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="highlight-icon">🎓</div>
+          <h3>USP Mathematics</h3>
+          <p>Bachelor's degree from University of São Paulo, grounded in Graph Theory & Formal Logic.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🏆</div>
+          <h3>POSCOMP 2026</h3>
+          <p>Score 46/70 — Top Percentile in Brazil's National Computer Science Exam.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">⭐</div>
+          <h3>IME-USP Conceito A</h3>
+          <p>Highest Distinction Grade in Graph Theory, Data Structures & Systems Analysis.</p>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🌍</div>
+          <h3>UN/CEFACT Trade NLP</h3>
+          <p>Architect of e-CERT international trade certificate NLP parser for MAPA.</p>
+        </div>
       </div>
     </section>
 
@@ -48,30 +100,50 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <div class="about-text">
-          <p>Bachelor of Mathematics from USP, I bridge the gap between formal logic and practical AI. My focus is
-            on building robust systems using Symbolic AI, NLP, and Computer Vision, ensuring that every line of code
-            is backed by sound architectural and mathematical foundations.</p>
-          <p>Currently, I specialize in healthcare interoperability and digital restoration, applying deep learning to
-            solve complex semantic and visual problems.</p>
+          <p>
+            With a solid foundation in <strong>Pure & Applied Mathematics from USP</strong>, I specialize in engineering resilient software systems that bridge formal mathematical logic with modern AI architectures.
+          </p>
+          <p>
+            My work spans developing high-throughput <strong>UN/CEFACT NLP microservices for international trade</strong> (MAPA), predictive bio-statistical modeling on +300k cardiovascular samples (InCor), algorithmic economic indexes (FGV CONSECANA-SP), and offline-first Progressive Web Applications (MindFlow & Motion App).
+          </p>
+
+          <div class="social-quick-links">
+            <a href="https://github.com/arielcampelo" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/ariel-campelo-0909b4231/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="http://lattes.cnpq.br/4783307521743603" target="_blank" rel="noopener">Currículo Lattes</a>
+          </div>
         </div>
+
         <div class="skills">
           <h3>Technical Expertise</h3>
           <div class="skills-container">
             <div class="skill-category">
-              <h4>Foundations</h4>
+              <h4>Foundations & AI</h4>
               <div class="tags">
                 <span class="skill-tag">Formal Logic</span>
+                <span class="skill-tag">Graph Theory</span>
                 <span class="skill-tag">Symbolic AI</span>
-                <span class="skill-tag">Math Modeling</span>
+                <span class="skill-tag">Deep Learning (PyTorch)</span>
+                <span class="skill-tag">spaCy / Transformers</span>
               </div>
             </div>
             <div class="skill-category">
-              <h4>Engines & DevOps</h4>
+              <h4>Backend & Engineering</h4>
               <div class="tags">
-                <span class="skill-tag">Python (FastAPI/Pydantic)</span>
+                <span class="skill-tag">Python (FastAPI / Pydantic)</span>
+                <span class="skill-tag">RESTful Microservices</span>
                 <span class="skill-tag">Docker & Jenkins</span>
-                <span class="skill-tag">spaCy</span>
-                <span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">PostgreSQL / SQL</span>
+                <span class="skill-tag">Git / GitHub Actions</span>
+              </div>
+            </div>
+            <div class="skill-category">
+              <h4>Web & PWAs</h4>
+              <div class="tags">
+                <span class="skill-tag">Progressive Web Apps (PWA)</span>
+                <span class="skill-tag">JavaScript (ES6+) / Vite</span>
+                <span class="skill-tag">Web Audio API</span>
+                <span class="skill-tag">HTML5 / Modern Glass CSS</span>
               </div>
             </div>
           </div>
@@ -81,39 +153,101 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section projects-section">
-      <h2 class="section-title">Hero Projects</h2>
+      <h2 class="section-title">Featured Projects</h2>
       <div class="projects-grid">
-        <!-- Coloriz.AI -->
+        <!-- e-CERT Parser -->
         <div class="project-card hero-card">
-          <div class="card-status">In Development</div>
-          <h3>Coloriz.AI</h3>
-          <p>Digital restoration and colorization of 1920s films using Deep Learning. A fusion of mathematical
-            color-space mapping and neural networks.</p>
+          <div class="card-badge">Production API</div>
+          <h3>e-CERT UN/CEFACT NLP API</h3>
+          <p>
+            Microservices architecture built with Python & FastAPI to parse, validate, and normalize international UN/CEFACT electronic sanitary trade certificates for MAPA (Ministry of Agriculture).
+          </p>
           <div class="project-tags">
-            <span>Deep Learning</span>
-            <span>Computer Vision</span>
-          </div>
-        </div>
-
-        <!-- Health Interoperability -->
-        <div class="project-card">
-          <h3>Health Interoperability</h3>
-          <p>Automated clinical anamnesis system. Integrating SNOMED CT/ICD ontologies with FastAPI to ensure medical
-            data synchronization across systems.</p>
-          <div class="project-tags">
+            <span>Python</span>
             <span>FastAPI</span>
-            <span>Ontologies</span>
             <span>NLP</span>
+            <span>UN/CEFACT</span>
+            <span>Docker</span>
           </div>
         </div>
 
-        <!-- Genomic Big Data -->
+        <!-- MindFlow PWA -->
         <div class="project-card">
-          <h3>Genomic Big Data</h3>
-          <p>Predictive modeling of cardiovascular phenotypes using PLS Regression on datasets of +300k individuals at
-            InCor (HC-FMUSP).</p>
+          <div class="card-badge green">Live PWA</div>
+          <h3>MindFlow Journaling PWA</h3>
+          <p>
+            Zero-friction offline-first voice and text journaling app featuring Web Audio API processing, local storage encryption, and structured cognitive reflections.
+          </p>
+          <div class="project-tags">
+            <span>PWA</span>
+            <span>Web Audio API</span>
+            <span>JavaScript</span>
+            <span>Offline-First</span>
+          </div>
+          <div class="project-links">
+            <a href="https://arielcampelo.github.io/journaling/" target="_blank" rel="noopener">Live App ↗</a>
+            <a href="https://github.com/arielcampelo/journaling" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+        <!-- Motion App PWA -->
+        <div class="project-card">
+          <div class="card-badge green">Live PWA</div>
+          <h3>Motion Analytics PWA</h3>
+          <p>
+            High-performance habit and physical motion tracker web application featuring real-time visual analytics, smooth dark glassmorphism, and instant offline caching.
+          </p>
+          <div class="project-tags">
+            <span>PWA</span>
+            <span>Vite</span>
+            <span>Glassmorphism</span>
+            <span>Analytics</span>
+          </div>
+          <div class="project-links">
+            <a href="https://arielcampelo.github.io/motion-app/" target="_blank" rel="noopener">Live App ↗</a>
+            <a href="https://github.com/arielcampelo/motion-app" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+        <!-- Coloriz.AI -->
+        <div class="project-card">
+          <div class="card-badge purple">Research & AI</div>
+          <h3>Coloriz.AI restoration</h3>
+          <p>
+            Deep learning pipeline for digital restoration and automatic colorization of 1920s historic archival films combining neural color-space mapping with PyTorch.
+          </p>
+          <div class="project-tags">
+            <span>PyTorch</span>
+            <span>Computer Vision</span>
+            <span>OpenCV</span>
+            <span>Deep Learning</span>
+          </div>
+        </div>
+
+        <!-- FGV CONSECANA-SP -->
+        <div class="project-card">
+          <div class="card-badge blue">Enterprise</div>
+          <h3>FGV CONSECANA-SP Engine</h3>
+          <p>
+            Statistical modeling and calculation engine for agricultural sugarcane quality distribution, powering economic index algorithms for FGV and sugar mills.
+          </p>
           <div class="project-tags">
             <span>R</span>
+            <span>Statistical Modeling</span>
+            <span>Algorithmic Economics</span>
+          </div>
+        </div>
+
+        <!-- InCor Genomic Big Data -->
+        <div class="project-card">
+          <div class="card-badge blue">Health Tech</div>
+          <h3>InCor Genomic Big Data</h3>
+          <p>
+            Predictive modeling of cardiovascular phenotypes using Partial Least Squares (PLS) regression over massive bio-genomic datasets (+300,000 individuals) at InCor HC-FMUSP.
+          </p>
+          <div class="project-tags">
+            <span>R</span>
+            <span>PLS Regression</span>
             <span>Bioinformatics</span>
             <span>Big Data</span>
           </div>
@@ -123,65 +257,32 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section contact-section">
-      <h2 class="section-title">Get in Touch</h2>
+      <h2 class="section-title">Let's Connect</h2>
       <div class="contact-container">
-        <p>Looking for a researcher-engineer for complex AI challenges?</p>
+        <p class="contact-lead">
+          Looking for a mathematician & software engineer for high-impact AI, Python backends, or custom software development?
+        </p>
+
+        <div class="email-box">
+          <span id="emailText">rieocampelo@gmail.com</span>
+          <button id="copyEmailBtn" class="copy-btn" title="Copy email">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copyToast">Copy</span>
+          </button>
+        </div>
+
         <div class="contact-links">
-          <a href="mailto:rieocampelo@gmail.com" class="contact-button">Send an Email</a>
-          <a href="https://www.linkedin.com/in/ariel-campelo-0909b4231/" target="_blank"
-            class="contact-button secondary">LinkedIn</a>
+          <a href="mailto:rieocampelo@gmail.com" class="btn btn-primary">Send Email</a>
+          <a href="https://www.linkedin.com/in/ariel-campelo-0909b4231/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn Profile</a>
+          <a href="https://github.com/arielcampelo" target="_blank" rel="noopener" class="btn btn-secondary">GitHub Profile</a>
         </div>
       </div>
     </section>
   </div>
 
-  <div class="construction-banner">
-    <div class="construction-content">
-      <i class="fa-solid fa-triangle-exclamation"></i>
-      <span>Under Construction</span>
-      <i class="fa-solid fa-screwdriver-wrench"></i>
-    </div>
-  </div>
-
-
-  <!-- Header
-    <header class="bg-primary text-white text-center py-5">
-        <div class="container">
-            <h1 class="display-4">Welcome to My Portfolio</h1>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="btn btn-light btn-lg mt-3">Download Resume</a>
-        </div>
-    </header>
--->
-
-  <!-- Projects Section 
-         <main class="container my-5">
-        <section id="projects">
-            <h2 class="text-center mb-4">My Projects</h2>
-            <div class="row">
-                <!-- Example Project 
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Project Image">
-                        <div class="card-body">
-                            <h5 class="card-title">Project 1</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="#" class="btn btn-primary">View Project</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more projects here 
-            </div>
-        </section>
-    </main>
--->
-  <!-- Footer 
-    <footer class="bg-dark text-white text-center py-3">
-        <p>© 2024 My Name</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
--->
+  <footer class="footer">
+    <p>© 2026 Ariel Campelo. Built with modern glassmorphism & plain JS.</p>
+  </footer>
 </body>
 
 </html>

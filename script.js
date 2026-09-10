@@ -1,150 +1,175 @@
-const burguerButton = document.getElementsByClassName('burguer-button')[0]
-const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+// Mobile Hamburger Toggle
+const burguerButton = document.querySelector('.burguer-button');
+const navbarLinks = document.querySelector('.navbar-links');
 
-burguerButton.addEventListener('click', () => {
-    navbarLinks.classList.toggle('active')
-})
+if (burguerButton) {
+  burguerButton.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active');
+  });
+}
 
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+// Close mobile menu on link click
+document.querySelectorAll('.navbar-links a').forEach(anchor => {
+  anchor.addEventListener('click', () => {
+    if (navbarLinks.classList.contains('active')) {
+      navbarLinks.classList.remove('active');
+    }
+  });
 });
 
+// Email Copy to Clipboard Button
+const copyEmailBtn = document.getElementById('copyEmailBtn');
+const copyToast = document.getElementById('copyToast');
 
+if (copyEmailBtn && copyToast) {
+  copyEmailBtn.addEventListener('click', () => {
+    const email = "rieocampelo@gmail.com";
+    navigator.clipboard.writeText(email).then(() => {
+      copyToast.textContent = "Copied!";
+      copyToast.style.color = "#34d399";
+      setTimeout(() => {
+        copyToast.textContent = "Copy";
+        copyToast.style.color = "";
+      }, 2500);
+    }).catch(err => {
+      console.error('Failed to copy email: ', err);
+    });
+  });
+}
+
+// Particle Graph Canvas Background
 document.addEventListener('DOMContentLoaded', function () {
-    const canvas = document.querySelector('canvas');
-    const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById('canvas');
+  if (!canvas) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = window.innerWidth;
+  let h = canvas.height = window.innerHeight;
+  let particles = [];
+  let particleDistance = 65;
+  let mouse = {
+    x: undefined,
+    y: undefined,
+    radius: 120
+  };
 
-    let w, h, particles;
-    let particleDistance = 40;
-    let mouse = {
-        x: undefined,
-        y: undefined,
-        radius: 90
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.baseX = x;
+      this.baseY = y;
+      this.size = Math.random() * 1.5 + 1;
+      this.speed = (Math.random() * 10) + 3;
     }
 
-    function init() {
-        resizeReset();
-        animationLoop();
+    draw() {
+      ctx.fillStyle = "rgba(192, 132, 252, 0.6)";
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
     }
 
-    function resizeReset() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
+    update() {
+      if (mouse.x !== undefined && mouse.y !== undefined) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
 
-        particles = [];
-        for (let y = (((h - particleDistance) % particleDistance) + particleDistance) / 2; y < h; y += particleDistance) {
-            for (let x = (((w - particleDistance) % particleDistance) + particleDistance) / 2; x < w; x += particleDistance) {
-                particles.push(new Particle(x, y));
-            }
+        if (distance < mouse.radius) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          let forceDirectionX = dx / distance;
+          let forceDirectionY = dy / distance;
+          let directionX = forceDirectionX * force * this.speed;
+          let directionY = forceDirectionY * force * this.speed;
+
+          this.x -= directionX;
+          this.y -= directionY;
+        } else {
+          if (this.x !== this.baseX) {
+            let dx = this.x - this.baseX;
+            this.x -= dx / 12;
+          }
+          if (this.y !== this.baseY) {
+            let dy = this.y - this.baseY;
+            this.y -= dy / 12;
+          }
         }
-    }
-
-    function animationLoop() {
-        ctx.clearRect(0, 0, w, h);
-        drawScene();
-        requestAnimationFrame(animationLoop);
-        ctx.fillStyle = 'rgba(15, 15, 15, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function drawScene() {
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+      } else {
+        if (this.x !== this.baseX) {
+          let dx = this.x - this.baseX;
+          this.x -= dx / 12;
         }
-        drawLine();
-    }
-
-    function drawLine() {
-        for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-                let dx = particles[a].x - particles[b].x;
-                let dy = particles[a].y - particles[b].y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < particleDistance * 1.5) {
-                    let opacity = 1 - (distance / (particleDistance * 1.5));
-                    // Gradient effect between primary and secondary colors
-                    ctx.strokeStyle = `rgba(0, 242, 255, ${opacity * 0.2})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[a].x, particles[a].y);
-                    ctx.lineTo(particles[b].x, particles[b].y);
-                    ctx.stroke();
-                }
-            }
+        if (this.y !== this.baseY) {
+          let dy = this.y - this.baseY;
+          this.y -= dy / 12;
         }
+      }
     }
+  }
 
-    function mousemove(e) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
+  function init() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    particles = [];
+
+    const cols = Math.floor(w / particleDistance);
+    const rows = Math.floor(h / particleDistance);
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const posX = (x * particleDistance) + (particleDistance / 2);
+        const posY = (y * particleDistance) + (particleDistance / 2);
+        particles.push(new Particle(posX, posY));
+      }
     }
+  }
 
-    function mouseout() {
-        mouse.x = undefined;
-        mouse.y = undefined;
-    }
+  function drawLines() {
+    for (let a = 0; a < particles.length; a++) {
+      for (let b = a + 1; b < particles.length; b++) {
+        let dx = particles[a].x - particles[b].x;
+        let dy = particles[a].y - particles[b].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
 
-    class Particle {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = 1.5;
-            this.baseX = this.x;
-            this.baseY = this.y;
-            this.speed = (Math.random() * 15) + 5;
+        if (distance < particleDistance * 1.4) {
+          let opacity = (1 - (distance / (particleDistance * 1.4))) * 0.15;
+          ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
         }
-        draw() {
-            // Subtle glow effect
-            ctx.fillStyle = "#00f2ff";
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = "#00f2ff";
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
-            ctx.shadowBlur = 0; // Reset blur for other elements
-        }
-        update() {
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-            let maxDistance = mouse.radius;
-
-            if (distance < mouse.radius) {
-                let force = (maxDistance - distance) / maxDistance;
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let directionX = forceDirectionX * force * this.speed;
-                let directionY = forceDirectionY * force * this.speed;
-
-                this.x -= directionX;
-                this.y -= directionY;
-            } else {
-                if (this.x !== this.baseX) {
-                    let dx = this.x - this.baseX;
-                    this.x -= dx / 15;
-                }
-                if (this.y !== this.baseY) {
-                    let dy = this.y - this.baseY;
-                    this.y -= dy / 15;
-                }
-            }
-        }
+      }
     }
+  }
 
+  function animationLoop() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+    }
+    drawLines();
+    requestAnimationFrame(animationLoop);
+  }
+
+  init();
+  animationLoop();
+
+  window.addEventListener('resize', () => {
     init();
-    window.addEventListener("resize", resizeReset);
-    window.addEventListener("mousemove", mousemove);
-    window.addEventListener("mouseout", mouseout);
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseout', () => {
+    mouse.x = undefined;
+    mouse.y = undefined;
+  });
 });
